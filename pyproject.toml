@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tare-breaker"
+version = "0.1.0"
+description = "破甲评测与生成流水线：承重结构 × 载体变异 × 拒答评分 × 束搜索"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "YG" }]
+keywords = ["prompt", "robustness", "evaluation", "redteam", "jailbreak"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["build>=1.0"]
+
+[project.scripts]
+tare-breaker = "tarebreaker.harness:main"
+tb-compose = "tarebreaker.compose:main"
+
+[project.urls]
+Homepage = "https://example.invalid/tare-breaker"
+
+[tool.setuptools]
+packages = ["tarebreaker"]
+package-dir = { "tarebreaker" = "src" }
+include-package-data = false

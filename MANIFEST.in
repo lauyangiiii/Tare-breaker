@@ -1,0 +1,5 @@
+include README.md
+include INSTALL.md
+include LICENSE
+include build_dist.ps1
+recursive-include src *.py
