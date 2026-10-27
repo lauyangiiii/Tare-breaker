@@ -10,3 +10,7 @@ runs/
 _v/
 ._v/
 tmp_verify/
+
+# SSH 私钥绝不入库
+keys/
+*.pub
