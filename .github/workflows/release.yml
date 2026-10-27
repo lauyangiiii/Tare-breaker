@@ -1,0 +1,89 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to publish (e.g. v0.1.1)"
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: build and publish
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Resolve tag and check it matches the package version
+        run: |
+          TAG="${{ github.event.inputs.tag || github.ref_name }}"
+          echo "TAG=$TAG" >> "$GITHUB_ENV"
+          VER=$(python -c "import re;print(re.search(r'^version\s*=\s*\"([^\"]+)\"',open('pyproject.toml').read(),re.M).group(1))")
+          echo "VERSION=$VER" >> "$GITHUB_ENV"
+          test "$TAG" = "v$VER" || { echo "tag $TAG does not match version $VER"; exit 1; }
+
+      - name: Install build tooling
+        run: python -m pip install --upgrade setuptools wheel
+
+      - name: Build artifacts
+        run: python tools/make_artifacts.py
+
+      - name: Verify wheel and sdist
+        run: |
+          python -m venv .verify
+          . .verify/bin/activate
+          python -m pip install --quiet dist/*.whl
+          tare-breaker --version
+          python -m tarebreaker --version
+          deactivate
+          mkdir -p .sdist
+          tar -xzf dist/*.tar.gz -C .sdist
+          python .sdist/*/src/harness.py --version
+
+      - name: Show artifact inventory
+        run: |
+          cat dist/SHA256SUMS.txt
+          ls -la dist
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.TAG }}
+          name: tare-breaker ${{ env.VERSION }}
+          body: |
+            ## tare-breaker ${{ env.VERSION }}
+
+            Adversarial prompt-robustness harness: 16 load-bearing structures × 15 carrier
+            mutations × refusal scoring × beam search. Zero dependencies, Python 3.9+.
+
+            ### Artifacts
+
+            | File | Use |
+            | --- | --- |
+            | `tare-breaker-${{ env.VERSION }}-portable.zip` | Unzip and run — no install |
+            | `tare_breaker-${{ env.VERSION }}-py3-none-any.whl` | `pip install` → `tare-breaker` / `tb-compose` |
+            | `tare_breaker-${{ env.VERSION }}.tar.gz` | Standard sdist, `pip install .` |
+            | `tare-breaker-${{ env.VERSION }}-src.zip` | Pure source, edit in place |
+            | `SHA256SUMS.txt` | Integrity check |
+
+            Verify: `sha256sum -c SHA256SUMS.txt`
+
+            See [README](README.md) for the three-layer model and the probe catalogue.
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+            dist/*.zip
+            dist/SHA256SUMS.txt
+          generate_release_notes: true
+          fail_on_unmatched_files: true

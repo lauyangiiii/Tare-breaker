@@ -8,7 +8,7 @@
 param(
     [string]$Repo = "Tare-breaker",
     [string]$User = "lauyangiiii",
-    [string]$Description = "tare-breaker 0.1.0 - adversarial prompt evaluation harness: 16 structures x 15 mutations x refusal scoring x beam search",
+    [string]$Description = "tare-breaker 0.1.1 - adversarial prompt evaluation harness: 16 structures x 15 mutations x refusal scoring x beam search",
     [switch]$Private,
     [switch]$SkipCreate
 )

@@ -12,16 +12,16 @@
 
 ## A. 免安装（zip）
 
-1. 解压 `tare-breaker-0.1.0-portable.zip` 到任意目录
+1. 解压 `tare-breaker-0.1.1-portable.zip` 到任意目录
 2. 进目录运行：
    - Windows：`tare-breaker.cmd --version`
    - Linux/macOS：`./tare-breaker.sh --version`
-3. 看到 `tare-breaker 0.1.0` 即成功
+3. 看到 `tare-breaker 0.1.1` 即成功
 
 zip 结构：
 
 ```
-tare-breaker-0.1.0-portable/
+tare-breaker-0.1.1-portable/
 ├─ tare-breaker.cmd      Windows 启动器
 ├─ tare-breaker.sh       类 Unix 启动器（需 chmod +x）
 ├─ src/                  全部代码
@@ -38,7 +38,7 @@ tare-breaker-0.1.0-portable/
 ## B. wheel 安装
 
 ```bash
-python -m pip install tare_breaker-0.1.0-py3-none-any.whl
+python -m pip install tare_breaker-0.1.1-py3-none-any.whl
 tare-breaker --version
 tb-compose --help
 ```
@@ -59,7 +59,7 @@ python -m venv .venv
 # Linux/macOS
 source .venv/bin/activate
 
-python -m pip install tare_breaker-0.1.0-py3-none-any.whl
+python -m pip install tare_breaker-0.1.1-py3-none-any.whl
 ```
 
 **离线安装**：wheel 本身就是离线包，`pip install` 不会联网，不需要 `--no-index` 也行。
@@ -86,10 +86,10 @@ python src/compose.py --target tare --task "..." --out out/attack.md
 
 ## D. 源码包（两种）
 
-**`tare-breaker-0.1.0-src.zip`** —— 纯源码，解压即可改：
+**`tare-breaker-0.1.1-src.zip`** —— 纯源码，解压即可改：
 
 ```
-tare-breaker-0.1.0-src/
+tare-breaker-0.1.1-src/
 ├─ src/              8 个 .py，约 960 行
 ├─ examples/         成品提示示例
 ├─ pyproject.toml
@@ -102,16 +102,16 @@ tare-breaker-0.1.0-src/
 ```
 
 ```bash
-unzip tare-breaker-0.1.0-src.zip
-cd tare-breaker-0.1.0-src
+unzip tare-breaker-0.1.1-src.zip
+cd tare-breaker-0.1.1-src
 python src/harness.py --version
 ```
 
-**`tare_breaker-0.1.0.tar.gz`**（标准 sdist）—— 走标准打包链路：
+**`tare_breaker-0.1.1.tar.gz`**（标准 sdist）—— 走标准打包链路：
 
 ```bash
-tar -xzf tare_breaker-0.1.0.tar.gz
-cd tare_breaker-0.1.0
+tar -xzf tare_breaker-0.1.1.tar.gz
+cd tare_breaker-0.1.1
 python -m pip install .          # 从源码构建并安装
 ```
 
@@ -125,7 +125,7 @@ python -m pip install .          # 从源码构建并安装
 
 ```powershell
 # Windows
-Get-FileHash .\tare_breaker-0.1.0-py3-none-any.whl -Algorithm SHA256
+Get-FileHash .\tare_breaker-0.1.1-py3-none-any.whl -Algorithm SHA256
 ```
 
 ```bash

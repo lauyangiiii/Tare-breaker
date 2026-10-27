@@ -14,3 +14,7 @@ tmp_verify/
 # SSH 私钥绝不入库
 keys/
 *.pub
+
+tmp_*/
+.portable/
+.verify/

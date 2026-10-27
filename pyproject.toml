@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tare-breaker"
-version = "0.1.0"
+version = "0.1.1"
 description = "破甲评测与生成流水线：承重结构 × 载体变异 × 拒答评分 × 束搜索"
 readme = "README.md"
 requires-python = ">=3.9"
