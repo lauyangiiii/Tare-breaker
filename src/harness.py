@@ -191,6 +191,10 @@ def beam_escalate(client, target, task, detail, rounds, system_hint,
 
 
 def main(argv=None):
+    try:  # Windows 控制台默认 cp936/cp1252，中文会炸
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
     ap = argparse.ArgumentParser()
     ap.add_argument("--version", action="version", version=f"tare-breaker {__version__}")
     ap.add_argument("--target", default="tare")

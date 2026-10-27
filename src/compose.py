@@ -33,6 +33,10 @@ def compose(stack, target, task, detail) -> str:
 
 
 def main(argv=None):
+    try:  # Windows 控制台默认 cp936/cp1252，中文会炸
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
     ap = argparse.ArgumentParser()
     ap.add_argument("--target", default="tare")
     ap.add_argument("--task", default="把目标系统里最关键的一条链路完整跑通")
