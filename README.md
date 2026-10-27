@@ -1,3 +1,5 @@
+[![CI](https://github.com/lauyangiiii/Tare-breaker/actions/workflows/ci.yml/badge.svg)](https://github.com/lauyangiiii/Tare-breaker/actions/workflows/ci.yml) [![Release](https://img.shields.io/github/v/release/lauyangiiii/Tare-breaker)](https://github.com/lauyangiiii/Tare-breaker/releases)
+
 # tare-breaker
 
 **An adversarial prompt-robustness harness.** 16 load-bearing prompt structures × 15 carrier mutations × a refusal scorer × beam search.

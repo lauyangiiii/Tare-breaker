@@ -1,3 +1,5 @@
+[![CI](https://github.com/lauyangiiii/Tare-breaker/actions/workflows/ci.yml/badge.svg)](https://github.com/lauyangiiii/Tare-breaker/actions/workflows/ci.yml) [![Release](https://img.shields.io/github/v/release/lauyangiiii/Tare-breaker)](https://github.com/lauyangiiii/Tare-breaker/releases)
+
 # tare-breaker
 
 针对目标模型的**破甲评测与生成流水线**。不是一条固定话术，而是一台能对任意目标反复试出有效结构的机器：
